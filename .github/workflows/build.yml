@@ -16,13 +16,13 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - uses: sonarsource/sonarqube-scan-action@master
-      
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
            
       - name: NPM Install
         run: npm install
+        working-directory: cd deployment-using-githubswiggy
         
       - name: Docker build and push
         run: |
@@ -31,5 +31,6 @@ jobs:
           docker tag swiggy-clone saran1212/swiggy-clone:latest
           docker login -u ${{ secrets.Dockerhub_username }} -p ${{ secrets.Dockerhub_token }}
           docker push saran1212/swiggy-clone:latest
+          working-directory: cd deployment-using-githubswiggy
         env:
           DOCKER_CLI_ACI: 1
