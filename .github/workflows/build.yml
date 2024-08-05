@@ -22,7 +22,7 @@ jobs:
            
       - name: NPM Install
         run: npm install
-        working-directory: ./deployment-using-githubswiggy
+        working-directory: cd ../../../deployment-using-githubswiggy
         
       - name: Docker build and push
         run: |
@@ -31,6 +31,6 @@ jobs:
           docker tag swiggy-clone saran1212/swiggy-clone:latest
           docker login -u ${{ secrets.Dockerhub_username }} -p ${{ secrets.Dockerhub_token }}
           docker push saran1212/swiggy-clone:latest
-          working-directory: ./deployment-using-githubswiggy
+          working-directory: cd ../../../deployment-using-githubswiggy
         env:
           DOCKER_CLI_ACI: 1
