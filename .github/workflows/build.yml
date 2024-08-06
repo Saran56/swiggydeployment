@@ -27,10 +27,10 @@ jobs:
       - name: Docker build and push
         run: |
           # Run commands to build and push Docker images
-          docker build -t swiggy-clone .
+          cd /home/ubuntu/actions-runner/deployment-using-github-actions
+          docker build -f /home/ubuntu/actions-runner/deployment-using-github-actions/Dockerfile -t swiggy-clone /home/ubuntu/actions-runner/deployment-using-github-actions
           docker tag swiggy-clone saran1212/swiggy-clone:latest
           docker login -u ${{ secrets.Dockerhub_username }} -p ${{ secrets.Dockerhub_token }}
           docker push saran1212/swiggy-clone:latest
-          working-directory: /home/ubuntu/actions-runner/deployment-using-github-actions
         env:
           DOCKER_CLI_ACI: 1
