@@ -46,5 +46,7 @@ jobs:
             run: trivy image saranmessi/swiggy-clone:latest > trivyimagedeploy.txt
           - name: Deploy to container
             run: docker run -d --name swiggy-clone -p 3000:3000 saranmessi/swiggy-clone:latest
+          - name: Update kubeconfig
+            run: aws eks --region ap-south-1 update-kubeconfig --name EKS_CLOUD
           - name: Deploy to kubernetes
             run: kubectl apply -f /home/ubuntu/actions-runner/deployment-using-github-actions/deployment-service.yml --validate=false
