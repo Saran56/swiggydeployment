@@ -47,4 +47,4 @@ jobs:
           - name: Deploy to container
             run: docker run -d --name swiggy-clone -p 3000:3000 saranmessi/swiggy-clone:latest
           - name: Deploy to kubernetes
-            run: kubectl apply -f /home/ubuntu/actions-runner/deployment-using-github-actions/deployment-service.yml
+            run: kubectl apply -f /home/ubuntu/actions-runner/deployment-using-github-actions/deployment-service.yml --validate=false
